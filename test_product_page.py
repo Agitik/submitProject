@@ -20,3 +20,29 @@ def test_guest_can_add_product_to_basket(browser, link):
     page.add_purchase_to_basket()
     page.is_purchase_name_right()
     page.is_purchase_prise_right()
+
+
+def test_guest_cant_see_success_message_after_adding_product_to_basket(browser):
+    link = 'http://selenium1py.pythonanywhere.com/ru/catalogue/coders-at-work_207/'
+    page = ProductPage(browser, link)
+    page.open()
+    page.add_purchase_to_basket()
+    check = page.is_not_element_present(*ProductPageLocators.ACCEPT_MESSAGE)
+    assert check, "Элемент есть на странице"
+
+
+def test_guest_cant_see_success_message(browser):
+    link = 'http://selenium1py.pythonanywhere.com/ru/catalogue/coders-at-work_207/'
+    page = ProductPage(browser, link)
+    page.open()
+    check = page.is_not_element_present(*ProductPageLocators.ACCEPT_MESSAGE)
+    assert check, "Элемента нет"
+
+
+def test_message_disappeared_after_adding_product_to_basket(browser):
+    link = 'http://selenium1py.pythonanywhere.com/ru/catalogue/coders-at-work_207/'
+    page = ProductPage(browser, link)
+    page.open()
+    page.add_purchase_to_basket()
+    check = page.is_disappeared(*ProductPageLocators.ACCEPT_MESSAGE)
+    assert check, "Сообщение не исчезает"

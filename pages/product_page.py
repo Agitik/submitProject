@@ -5,7 +5,7 @@ from .locators import ProductPageLocators
 class ProductPage(BasePage):
     def add_purchase_to_basket(self):
         link = self.browser.find_element(*ProductPageLocators.ADD_TO_BASKET_BUTTON).click()
-        self.solve_quiz_and_get_code()
+        # self.solve_quiz_and_get_code()
 
     def is_purchase_name_right(self):
         book_name = self.browser.find_element(*ProductPageLocators.BOOK_NAME).text
